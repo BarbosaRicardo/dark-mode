@@ -17,4 +17,4 @@ const useLocalStorage = (key, initialValue) => {
    return [darkMode, setterFunction]
 }
 
-export default useLocalStorage 
+export default useLocalStorage;
