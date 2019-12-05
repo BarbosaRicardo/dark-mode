@@ -11,6 +11,9 @@ import "./styles.scss";
 const App = () => {
   const [coinData, setCoinData] = useState([]);
 
+  //recall key : value pair 
+  //key : 'dark-mode'
+  //initialValue : false 
   const [darkMode, setDarkMode] = useLocalStorage('dark-mode', false)
 
   useEffect(() => {

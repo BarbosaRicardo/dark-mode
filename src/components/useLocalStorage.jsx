@@ -13,6 +13,7 @@ import React, { useState } from 'react'
  */
 
  //localStorage in general is key:value pairs
+ //darkMode :L
 const useLocalStorage = (key, initialValue) => {
 
    //invoking the useState function to return a value for darkMode
@@ -22,16 +23,23 @@ const useLocalStorage = (key, initialValue) => {
       //useState passes a function as a value using the ES6 anonymous 
       //arrow function notation (anonymous: empty ())
 
-      /**
-       * function scope 
-       * denoted by the curly brackets on line 18
-       */
-      
+
+       //conditional to check and see if something is in darkMode 
+       //there is nothing in darkMode at the beginning
+       //window is not necessary in window.localStorage 
+       //recall that 'key' = darkMode 
       const boolFromLocal = localStorage.getItem(key)
 
+      //local is either T or F
+      //does local have a value? then return local. else return 
+      //initialValue (which is false)
+      //checks to see if key in localStorage exists
       return boolFromLocal ? JSON.parse(boolFromLocal) : initialValue
    })
-
+   
+   //function that will change what is in the custom hook 
+   //returns a hook 
+   //only one parameter is passed since setDarkMode only has one argument
    const setterFunction = param => {
       localStorage.setItem('dark-mode', JSON.stringify(param))
       setDarkMode(param)
