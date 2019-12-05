@@ -14,6 +14,7 @@ const App = () => {
   //recall key : value pair 
   //key : 'dark-mode'
   //initialValue : false 
+  
   const [darkMode, setDarkMode] = useLocalStorage('dark-mode', false)
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const App = () => {
       .catch(err => console.log(err));
   }, []);
   return (
+    //workaround ternary for switching to dark-mode 
     <div className={darkMode ? "dark-mode" : "App"}>
       <Navbar setDarkMode={setDarkMode} darkMode={darkMode} />
       <Charts coinData={coinData} />

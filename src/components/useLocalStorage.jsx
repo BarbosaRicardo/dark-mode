@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 
 /**
  * Manages useLocalStorage
+ * localStorage is like a server inside of the browser 
  * @param {*} key 
  * @param {*} initialValue 
  * returns custom hook (function that holds a hook
@@ -34,6 +35,11 @@ const useLocalStorage = (key, initialValue) => {
       //does local have a value? then return local. else return 
       //initialValue (which is false)
       //checks to see if key in localStorage exists
+      //Javascript reads top to bottom, left to right, and reads this
+      //return statement before it hits the setterFunction 
+      //parse removes the string but not necessary for now since localStorage
+      //can accept boolean
+   
       return boolFromLocal ? JSON.parse(boolFromLocal) : initialValue
    })
    
@@ -41,9 +47,21 @@ const useLocalStorage = (key, initialValue) => {
    //returns a hook 
    //only one parameter is passed since setDarkMode only has one argument
    const setterFunction = param => {
+      //setItem method does not return all the time 
+      //setItem takes 2 parameters: the name of the key and the value 
+      //stringify is required for passing objects, however in this case
+      //we are working with boolean so it's not 100% required
+      //but stringify is parsed for good practice 
       localStorage.setItem('dark-mode', JSON.stringify(param))
+      
+      //invokes the function  
       setDarkMode(param)
    }
+   //returns an array: the setterFunction allows us to change the value of
+   //dark mode.
+   //when useLocalStorage is called there are two things inside
+   //destrucutirng allows us to not need the same names
+   //no keys in an array 
    return [darkMode, setterFunction]
 }
 
